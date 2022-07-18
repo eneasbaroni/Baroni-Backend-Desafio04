@@ -24,21 +24,21 @@ const getById = (x) => {
  const deleteById = (i) => {    
   let index = data.findIndex(x => x.id == i) 
   if (index == -1) {
-    return "Producto no Encontrado"
+    return ({ error: 'Producto no encontrado' })
   }  
   data.splice(index, 1);
-  return ("Producto Eliminado")  
+  return "Producto Eliminado"  
 } 
 
  //funcion que cambia producto segun id
  const changeById = (i, object) => { 
   let index = data.findIndex(x => x.id == i)
   if (index == -1) {
-    return "Producto no Encontrado"
+    return ({ error: 'Producto no encontrado' })
   }  
   object.id = i 
   data[index] = object  
-  return ("Producto Reemplazado")
+  return "Producto Reemplazado"
 } 
 
 module.exports = { list, save, getById, deleteById, changeById};
