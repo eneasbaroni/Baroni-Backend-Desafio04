@@ -17,22 +17,25 @@ const save = (object) => {
  //funcion para obtener producto segun ID
 const getById = (x) => {    
   if (data.length === 0) {return ({"Error" : "Archivo Vacio"})} 
-  if (data.some(el => el.id == x)) { 
-  const newObject = data.filter(el => el.id == x)
-  return newObject[0]      
-  } else {return ({"Error" : "Producto no Encontrado"})}  
+  return (data.find(el => el.id == x) || { error: 'Producto no encontrado' })  
 }  
 
  //funcion que elimina segun id
  const deleteById = (i) => {    
   let index = data.findIndex(x => x.id == i) 
+  if (index == -1) {
+    return "Producto no Encontrado"
+  }  
   data.splice(index, 1);
   return ("Producto Eliminado")  
 } 
 
- //funcion que elimina segun id
+ //funcion que cambia producto segun id
  const changeById = (i, object) => { 
   let index = data.findIndex(x => x.id == i)
+  if (index == -1) {
+    return "Producto no Encontrado"
+  }  
   object.id = i 
   data[index] = object  
   return ("Producto Reemplazado")
